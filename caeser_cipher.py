@@ -6,7 +6,7 @@ def caesar(text, shift, encrypt=True):
     if shift < 1 or shift > 25:
         return 'Shift must be an integer between 1 and 25.'
 
-    alphabet = 'abcdefghijklmnopqrstuvwxyz1234567890'
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
     if not encrypt:
         shift = - shift
@@ -22,8 +22,10 @@ def encrypt(text, shift):
 def decrypt(text, shift):
     return caesar(text, shift, encrypt=False)
 
-encrypted_text = input("Enter text to encrypt: ")
-encrypted_text = encrypt(encrypted_text, 13)
-print(encrypted_text)
-decrypted_text = decrypt(encrypted_text, 13)
-print(decrypted_text)
+text = input("Enter text to encrypt: ")
+try:
+    shift = int(input("Enter the shift (1-25)"))
+except ValueError:
+    print('Shift must be an integer.')
+encrypted_text = encrypt(text, shift)
+print(f"Encrypted: {encrypted_text}")
